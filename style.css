@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --main-bg: hsl(0 0% 15%);
+  --form-bg: hsl(0 0% 20%);
+  --form-border-color: hsl(0 0% 30%);
+  --form-shadow-color: hsl(0 0% 13%);
+  --task-bg: hsl(0 0% 17%);
+  --text-color: hsl(0 0% 85%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+#root {
+  height: 100dvh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background: var(--main-bg);
+  color: var(--text-color);
+}
+
+#app-form {
+  width: 70%;
+  height: 3rem;
+  max-width: 700px;
+  min-width: 200px;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  padding: 0 .5rem;
+  border: 1px solid var(--form-border-color);
+  border-radius: 1.5rem;
+  background: var(--form-bg);
+  box-shadow: 3px 3px 5px var(--form-shadow-color);
+}
+
+#app-input {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: .5rem;
+  background: inherit;
+  border: none;
+  border-radius: inherit;
+  font-size: 1.1rem;
+  color: inherit;
+}
+
+#app-input:focus {
+  outline: none;
+}
+
+#app-submit-btn {
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 2rem;
+  width: 2rem;
+  border: none;
+  border-radius: 50%;
+}
+
+button:hover {
+  cursor: pointer;
+}
