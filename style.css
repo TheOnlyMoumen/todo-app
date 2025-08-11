@@ -10,6 +10,10 @@
   --text-color: hsl(0 0% 85%);
   --submit-btn-bg: hsl(0 0% 90%);
   --task-btn-hover-bg: hsl(0 0% 30%);
+  --info-card-bg: hsl(0 0% 22%);
+  --info-card-hover-bg: hsl(0 0% 20%);
+  --info-card-scrollbar-thumb-bg: hsl(0 0% 30%);
+  --info-card-shadow-color: hsl(0 0% 10%);
 }
 
 * {
@@ -24,6 +28,23 @@
   background: var(--main-bg);
   color: var(--text-color);
   font-family: 'Roboto', monospace;
+}
+
+#root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  background: hsl(0 0% 0% / .3);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  z-index: 15;
+  transition: opacity .3s ease;
+}
+
+#root.blur::before {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 #root::after {
@@ -119,8 +140,7 @@ button:hover {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: .5rem;
-  padding: 1rem;
+  padding: .5rem 1rem;
   background: var(--task-bg);
   border-radius: 1rem;
   transition: box-shadow .2s ease 0s;
@@ -135,6 +155,7 @@ button:hover {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  padding: 1rem;
   overflow: hidden;
   text-overflow: ellipsis;
   overflow-wrap: break-word;
@@ -147,8 +168,9 @@ button:hover {
   color: inherit;
   flex: 0 0 auto;
   border-radius: 5px;
-  padding: 2px;
+  padding: .4rem;
 }
+
 
 .task button:hover {
   background: var(--task-btn-hover-bg);
@@ -182,4 +204,99 @@ button:hover {
 .task.completed > p {
   text-decoration: line-through;
   color: gray;
+}
+
+.info-card {
+  display: none;
+  background: var(--info-card-bg);
+  width: 70%;
+  max-width: 600px;
+  min-width: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  min-width: 300px;
+  border: 1px solid var(--form-border-color);
+  border-radius: 1rem;
+  box-shadow: 3px 3px 10px var(--info-card-shadow-color);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.info-card-content {
+  position: relative;
+  overflow: hidden auto;
+  width: 100%;
+  max-height: 350px;
+  min-height: 200px;
+}
+
+.info-card-content div {
+  padding: 1rem;
+}
+
+.info-card-content div:hover {
+  background: var(--info-card-hover-bg);
+}
+
+.info-card p {
+  line-height: 1.5;
+}
+
+.info-card.visible {
+  display: block;
+}
+
+.info-card-content::-webkit-scrollbar {
+  width: .5rem;
+  background: transparent;
+}
+
+.info-card-content::-webkit-scrollbar-thumb {
+  background: var(--info-card-scrollbar-thumb-bg);
+  border-radius: .25rem; 
+}
+
+.exit-btn {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50% !important;
+  font-size: 1rem;
+}
+
+.task .status {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  font-weight: bold;
+  color: hsl(0 85% 60%);
+}
+
+.task .status i {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: hsl(0 85% 60%);
+  color: white;
+  text-shadow: 0 0 2px white;
+  border-radius: 50%;
+  font-size: .7rem;
+}
+
+.task.completed .status {
+  color: hsl(120 70% 45%);
+}
+
+.task.completed .status i {
+  background: hsl(120 70% 45%);
 }
