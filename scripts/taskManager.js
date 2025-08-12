@@ -156,21 +156,6 @@ export function loadTasks() {
   }
 }
 
-export function createDropDown() {
-  element = document.createElement("select");
-  item1 = document.createElement("option");
-  item2 = document.createElement("option");
-  item3 = document.createElement("option");
-
-  item1.value = item1.innerText = "All";
-  item2.value = item2.innerText = "Completed";
-  item3.value = item3.innerText = "Uncompleted";
-
-  element.append(item1, item2, item3);
-
-  return element;
-};
-
 export function createDropMenu() {
   const container = document.createElement("div");
   const selectElement = document.createElement("select");
