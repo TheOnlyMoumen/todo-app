@@ -14,6 +14,8 @@
   --info-card-hover-bg: hsl(0 0% 20%);
   --info-card-scrollbar-thumb-bg: hsl(0 0% 30%);
   --info-card-shadow-color: hsl(0 0% 10%);
+  --drop-menu-bg: hsl(0 0% 18%);
+  --drop-menu-hover-bg: hsl(0 0% 20%);
 }
 
 * {
@@ -28,6 +30,7 @@
   background: var(--main-bg);
   color: var(--text-color);
   font-family: 'Roboto', monospace;
+  padding-top: 4rem;
 }
 
 #root::before {
@@ -77,11 +80,12 @@ a, a:hover, a:active, a:visited {
 }
 
 #app {
+  position: relative;
   width: 70%;
   max-width: 600px;
   min-width: 300px;
   margin: auto;
-  padding: 10vh 0 5rem 0;
+  padding-bottom: 5rem;
 }
 
 #app-form {
@@ -134,6 +138,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding-top: 4rem;
 }
 
 .task {
@@ -299,4 +304,44 @@ button:hover {
 
 .task.completed .status i {
   background: hsl(120 70% 45%);
+}
+
+.task.hidden {
+  display: none;
+}
+
+#app .select {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-bottom: 2rem;
+}
+
+#app .select select {
+  appearance: none;
+  background: var(--drop-menu-bg);
+  color: inherit;
+  border: none;
+  border-radius: .5rem;
+  padding: .5rem;
+  padding-right: 2rem;
+  font-size: 1rem;
+}
+
+#app .select select:hover {
+  background: var(--drop-menu-hover-bg);
+  cursor: pointer;
+}
+
+#app .select select:focus {
+  outline: none;
+}
+
+#app .select::after {
+  content: "⌄";
+  position: absolute;
+  top: -.2rem;
+  right: .5rem;
+  font-size: 1.5rem;
+  pointer-events: none;
 }

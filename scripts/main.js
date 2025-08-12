@@ -6,9 +6,12 @@ import { dom } from "./dom.js";
 function main() {
   // load tasks from local storage
   const taskMap = taskManager.loadTasks();
+  const dropMenu = taskManager.createDropMenu();
 
   // render the loaded tasks
   if (taskMap.size > 0) {
+    dom.app.prepend(dropMenu);
+
     taskMap.forEach(task => {
       taskManager.renderTask(task);
       taskManager.addTaskEvents(task, taskMap);
@@ -22,6 +25,7 @@ function main() {
     dom.input.value = "";
 
     if (taskTitle !== "") {
+      if (taskMap.size === 0) dom.app.prepend(dropMenu);
       taskManager.addTask(taskTitle, taskMap);
     }
   });
