@@ -1,7 +1,7 @@
 "use strict";
 
 import { getFormattedDate } from "./utils.js";
-import { dom } from "./dom.js";
+import { dom, createDropMenu } from "./dom.js";
 
 export class Task {
   constructor(taskTitle) {
@@ -154,51 +154,4 @@ export function loadTasks() {
   } catch {
     return new Map();
   }
-}
-
-export function createDropMenu() {
-  const container = document.createElement("div");
-  const selectElement = document.createElement("select");
-  const items = ["All", "Completed", "Uncompleted"];
-
-  items.forEach(item => {
-    const option = document.createElement("option");
-    option.value = option.innerText = item;
-    selectElement.append(option);
-  });
-  
-  showCategory(selectElement.value);
-
-  selectElement.addEventListener("change", event => {
-    showCategory(event.target.value);
-  });
-
-  container.append(selectElement);
-  container.classList.add("select");
-
-  return container;
-}
-
-function showCategory(category) {
-  const tasks = document.querySelectorAll(".task");
-
-  tasks.forEach(task => {
-    switch (category) {
-      case "All":
-        task.classList.remove("hidden");
-        break;
-
-      case "Completed":
-        if (!task.classList.contains("completed"))
-          task.classList.add("hidden");
-        else task.classList.remove("hidden");
-        break;
-
-      case "Uncompleted":
-        if (task.classList.contains("completed"))
-          task.classList.add("hidden");
-        else task.classList.remove("hidden");
-        break;
-    }
-  });
 }
