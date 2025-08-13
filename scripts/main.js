@@ -23,6 +23,9 @@ function main() {
     dom.root.prepend(welcomeMessage); 
   }
 
+  // add key events
+  addKeyEvents();
+
   // add a task when the form is submited 
   dom.form.addEventListener("submit", event => {
     event.preventDefault();
@@ -31,11 +34,28 @@ function main() {
 
     if (taskTitle !== "") {
       if (taskMap.size === 0){
-        document.getElementById("welcome-message").remove();
+        const welcomeMessageEl = document.getElementById("welcome-message");
+        if (welcomeMessageEl) welcomeMessageEl.remove();
         dom.form.classList.add("drop");
         dom.app.prepend(dropMenu);
       }
       taskManager.addTask(taskTitle, taskMap);
+    }
+  });
+}
+
+function addKeyEvents() {
+  const expr = /[0-9a-z ]/i;
+
+  document.addEventListener("keydown", event => {
+    switch (event.key) {
+      case "Escape":
+        dom.input.blur();
+        break;
+
+      default:
+        if (expr.test(event.key))
+          dom.input.focus();
     }
   });
 }

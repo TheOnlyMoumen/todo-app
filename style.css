@@ -86,7 +86,7 @@ a, a:hover, a:active, a:visited {
   max-width: 600px;
   min-width: 300px;
   margin: auto;
-  padding-bottom: 5rem;
+  padding-bottom: 6rem;
 }
 
 #app-form {
@@ -155,7 +155,7 @@ button:hover {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: .5rem 1rem;
+  padding: 1rem;
   background: var(--task-bg);
   border-radius: 1rem;
   transition: box-shadow .2s ease 0s;
@@ -170,8 +170,8 @@ button:hover {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  padding: 1rem;
   overflow: hidden;
+  padding: 0 1rem;
   text-overflow: ellipsis;
   overflow-wrap: break-word;
   hyphens: auto;
